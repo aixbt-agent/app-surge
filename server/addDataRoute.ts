@@ -22,14 +22,22 @@ function normalizeBaseUrl(value: string | undefined, protocol: 'http' | 'https')
   }
 
   const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `${protocol}://${trimmed}`
-  return withProtocol.replace(/\/+$/, '')
+  const normalized = withProtocol.replace(/\/+$/, '')
+  const host = normalized.replace(/^https?:\/\//i, '').split('/')[0] ?? ''
+  return host.includes('*') ? null : normalized
 }
 
 export function getDataApiBase(): string {
-  const railwayInternal = normalizeBaseUrl(process.env.RAILWAY_SERVICE_PROXY_URL, 'http')
-  if (railwayInternal) {
-    return railwayInternal
+  const explicit = normalizeBaseUrl(process.env.DATA_API, process.env.NODE_ENV === 'production' ? 'https' : 'http')
+  if (explicit) {
+    return explicit
   }
+
+  const api = normalizeBaseUrl(process.env.API_URL, 'https')
+  if (api) {
+    return api
+  }
+
   return process.env.NODE_ENV === 'production'
     ? 'http://proxy.railway.internal:3000'
     : 'http://localhost:3000'
