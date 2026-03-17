@@ -2,11 +2,10 @@
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { addDataRoute, getDataApiBase } from './server/addDataRoute.js'
+import { addDataRoute, fetchDataApiJson } from '@aixbt-agent/runtime'
 
 const BASE = 'https://api.aixbt.tech/v2'
 const API_KEY = process.env.AIXBT_API_KEY || ''
-const DATA_API = getDataApiBase()
 
 async function aixbtFetch(apiPath: string, opts?: RequestInit): Promise<any> {
   const res = await fetch(`${BASE}${apiPath}`, {
@@ -62,15 +61,13 @@ app.get('/api/search/:projectId', async (req, res) => {
   if (cached && cached.expires > Date.now()) return res.json({ analysis: cached.data, cached: true })
 
   try {
-    const dbRes = await fetch(`${DATA_API}/data/aixbt-surge/deep_search`)
-    if (dbRes.ok) {
-      const body = await dbRes.json()
-      const allRows = body.rows || body
-      const match = Array.isArray(allRows) ? allRows.find((r: any) => r.project_id === projectId) : null
-      if (match && new Date(match.expires_at) > new Date()) {
-        searchCache.set(projectId, { data: match.analysis, expires: new Date(match.expires_at).getTime() })
-        return res.json({ analysis: match.analysis, cached: true })
-      }
+    const body = await fetchDataApiJson<any>('aixbt-surge', 'deep_search', {
+      project_id: `eq.${projectId}`,
+    })
+    const rows = body.rows || body
+    if (rows?.length && new Date(rows[0].expires_at) > new Date()) {
+      searchCache.set(projectId, { data: rows[0].analysis, expires: new Date(rows[0].expires_at).getTime() })
+      return res.json({ analysis: rows[0].analysis, cached: true })
     }
   } catch {}
 
