@@ -25,23 +25,14 @@ function normalizeBaseUrl(value: string | undefined, protocol: 'http' | 'https')
   return withProtocol.replace(/\/+$/, '')
 }
 
-function getDataApiBase(): string {
-  const explicit = normalizeBaseUrl(process.env.DATA_API, process.env.NODE_ENV === 'production' ? 'https' : 'http')
-  if (explicit) {
-    return explicit
+export function getDataApiBase(): string {
+  const railwayInternal = normalizeBaseUrl(process.env.RAILWAY_SERVICE_PROXY_URL, 'http')
+  if (railwayInternal) {
+    return railwayInternal
   }
-
-  const controlPlane = normalizeBaseUrl(
-    process.env.CONTROL_PLANE_INTERNAL_URL || process.env.RAILWAY_SERVICE_CONTROL_PLANE_URL,
-    process.env.CONTROL_PLANE_INTERNAL_URL ? 'http' : 'https',
-  )
-  if (controlPlane) {
-    return `${controlPlane}/api`
-  }
-
   return process.env.NODE_ENV === 'production'
-    ? 'https://api.aixbt.sh'
-    : 'http://localhost:3000/api'
+    ? 'http://proxy.railway.internal:3000'
+    : 'http://localhost:3000'
 }
 
 function getDataRouteBase(namespace: string): string {

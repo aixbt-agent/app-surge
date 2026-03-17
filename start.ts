@@ -2,11 +2,11 @@
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { addDataRoute } from './server/addDataRoute.js'
+import { addDataRoute, getDataApiBase } from './server/addDataRoute.js'
 
 const BASE = 'https://api.aixbt.tech/v2'
 const API_KEY = process.env.AIXBT_API_KEY || ''
-const DATA_API = process.env.DATA_API || 'https://api.aixbt.sh'
+const DATA_API = getDataApiBase()
 
 async function aixbtFetch(apiPath: string, opts?: RequestInit): Promise<any> {
   const res = await fetch(`${BASE}${apiPath}`, {
