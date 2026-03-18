@@ -1,0 +1,14 @@
+{
+  "title": "Surge",
+  "description": "Surging project momentum plus cached deep-search analysis.",
+  "sources": [
+    {
+      "type": "table",
+      "table": "deep_search"
+    },
+    {
+      "type": "endpoint",
+      "path": "/api/surge"
+    }
+  ]
+}
