@@ -13,7 +13,7 @@ importers:
         version: https://codeload.github.com/aixbt-agent/components/tar.gz/d3182734f7c672708aeca6697287fb08738979b0(prop-types@15.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@aixbt-agent/runtime':
         specifier: github:aixbt-agent/runtime#main
-        version: https://codeload.github.com/aixbt-agent/runtime/tar.gz/7e793f222fd1b47efcdceb5588fb1804d2d1015a(express@5.2.1)
+        version: https://codeload.github.com/aixbt-agent/runtime/tar.gz/d7b786a5f675c18574e7952672cdd1c987fae884(express@5.2.1)
       express:
         specifier: ^5.1.0
         version: 5.2.1
@@ -55,8 +55,8 @@ packages:
       react: ^19.0.0
       react-dom: ^19.0.0
 
-  '@aixbt-agent/runtime@https://codeload.github.com/aixbt-agent/runtime/tar.gz/7e793f222fd1b47efcdceb5588fb1804d2d1015a':
-    resolution: {tarball: https://codeload.github.com/aixbt-agent/runtime/tar.gz/7e793f222fd1b47efcdceb5588fb1804d2d1015a}
+  '@aixbt-agent/runtime@https://codeload.github.com/aixbt-agent/runtime/tar.gz/d7b786a5f675c18574e7952672cdd1c987fae884':
+    resolution: {tarball: https://codeload.github.com/aixbt-agent/runtime/tar.gz/d7b786a5f675c18574e7952672cdd1c987fae884}
     version: 0.1.0
     peerDependencies:
       express: ^5.1.0
@@ -996,7 +996,7 @@ snapshots:
     transitivePeerDependencies:
       - prop-types
 
-  '@aixbt-agent/runtime@https://codeload.github.com/aixbt-agent/runtime/tar.gz/7e793f222fd1b47efcdceb5588fb1804d2d1015a(express@5.2.1)':
+  '@aixbt-agent/runtime@https://codeload.github.com/aixbt-agent/runtime/tar.gz/d7b786a5f675c18574e7952672cdd1c987fae884(express@5.2.1)':
     dependencies:
       express: 5.2.1
 
