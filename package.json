@@ -14,7 +14,7 @@
     "start": "tsx server.ts"
   },
   "dependencies": {
-    "@aixbt-agent/components": "git+https://github.com/aixbt-agent/components.git#main",
+    "@aixbt-agent/components": "github:aixbt-agent/components#main",
     "@aixbt-agent/runtime": "github:aixbt-agent/runtime#main",
     "express": "^5.1.0",
     "lucide-react": "^0.577.0",
