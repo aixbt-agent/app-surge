@@ -2,7 +2,11 @@
   "name": "surge",
   "displayName": "Surge Scanner",
   "description": "Top surging projects with web-based deep search analysis",
-  "aixbt": { "type": "ssr", "port": 3105, "startCommand": "npx tsx app-server.ts" },
+  "aixbt": {
+    "type": "ssr",
+    "port": 3105,
+    "startCommand": "npx tsx app-server.ts"
+  },
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -10,13 +14,13 @@
     "start": "tsx server.ts"
   },
   "dependencies": {
-    "@aixbt-agent/runtime": "git+https://github.com/aixbt-agent/runtime.git#main",
+    "@aixbt-agent/components": "git+https://github.com/aixbt-agent/components.git#main",
+    "@aixbt-agent/runtime": "github:aixbt-agent/runtime#main",
     "express": "^5.1.0",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "tsx": "^4.21.0",
-    "@aixbt-agent/components": "git+https://github.com/aixbt-agent/components.git#main"
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
