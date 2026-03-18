@@ -1,5 +1,8 @@
 {
   "name": "surge",
+  "displayName": "Surge Scanner",
+  "description": "Top surging projects with web-based deep search analysis",
+  "aixbt": { "type": "ssr", "port": 3105, "startCommand": "npx tsx app-server.ts" },
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",

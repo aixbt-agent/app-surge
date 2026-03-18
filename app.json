@@ -1,9 +1,0 @@
-{
-  "name": "Surge Scanner",
-  "description": "Top surging projects with web-based deep search analysis",
-  "type": "ssr",
-  "startCommand": "npx tsx app-server.ts",
-  "port": 3105,
-  "serviceSlug": "app-surge",
-  "repository": "aixbt-agent/app-surge"
-}
