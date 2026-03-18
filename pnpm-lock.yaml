@@ -13,7 +13,7 @@ importers:
         version: https://codeload.github.com/aixbt-agent/components/tar.gz/d3182734f7c672708aeca6697287fb08738979b0(prop-types@15.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@aixbt-agent/runtime':
         specifier: github:aixbt/agent
-        version: aixbt-agent@git+https://git@github.com:aixbt/agent.git#007d8b95725210a1d46503b9277cb9603815e5be(@bull-board/ui@6.20.5)(request@2.88.2)
+        version: aixbt-agent@git+https://git@github.com:aixbt/agent.git#052a9dab94d1717a48651d4d13cc97a9dd042f4b(@bull-board/ui@6.20.5)(request@2.88.2)
       express:
         specifier: ^5.1.0
         version: 5.2.1
@@ -578,8 +578,8 @@ packages:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
     engines: {node: '>= 0.6'}
 
-  aixbt-agent@git+https://git@github.com:aixbt/agent.git#007d8b95725210a1d46503b9277cb9603815e5be:
-    resolution: {commit: 007d8b95725210a1d46503b9277cb9603815e5be, repo: git@github.com:aixbt/agent.git, type: git}
+  aixbt-agent@git+https://git@github.com:aixbt/agent.git#052a9dab94d1717a48651d4d13cc97a9dd042f4b:
+    resolution: {commit: 052a9dab94d1717a48651d4d13cc97a9dd042f4b, repo: git@github.com:aixbt/agent.git, type: git}
     version: 1.0.0
     engines: {node: 22.x}
 
@@ -2394,7 +2394,7 @@ snapshots:
       mime-types: 3.0.2
       negotiator: 1.0.0
 
-  aixbt-agent@git+https://git@github.com:aixbt/agent.git#007d8b95725210a1d46503b9277cb9603815e5be(@bull-board/ui@6.20.5)(request@2.88.2):
+  aixbt-agent@git+https://git@github.com:aixbt/agent.git#052a9dab94d1717a48651d4d13cc97a9dd042f4b(@bull-board/ui@6.20.5)(request@2.88.2):
     dependencies:
       '@bull-board/api': 6.20.5(@bull-board/ui@6.20.5)
       '@bull-board/express': 6.20.5

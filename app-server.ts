@@ -2,7 +2,7 @@
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { addDataRoute, fetchDataApiJson } from '@aixbt-agent/runtime'
+import { createAppData } from '@aixbt-agent/runtime'
 
 const BASE = 'https://api.aixbt.tech/v2'
 const API_KEY = process.env.AIXBT_API_KEY || ''
@@ -24,8 +24,9 @@ async function fetchSurging(limit = 10) {
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 const port = parseInt(process.env.PORT || '3105')
+const data = createAppData('aixbt-surge')
 
-addDataRoute(app, 'aixbt-surge')
+data.mount(app)
 
 interface CacheEntry<T> { data: T; expires: number }
 let surgeCache: CacheEntry<any[]> | null = null
@@ -61,13 +62,10 @@ app.get('/api/search/:projectId', async (req, res) => {
   if (cached && cached.expires > Date.now()) return res.json({ analysis: cached.data, cached: true })
 
   try {
-    const body = await fetchDataApiJson<any>('aixbt-surge', 'deep_search', {
-      project_id: `eq.${projectId}`,
-    })
-    const rows = body.rows || body
-    if (rows?.length && new Date(rows[0].expires_at) > new Date()) {
-      searchCache.set(projectId, { data: rows[0].analysis, expires: new Date(rows[0].expires_at).getTime() })
-      return res.json({ analysis: rows[0].analysis, cached: true })
+    const result = await data.table<any>('deep_search').where({ project_id: projectId }).first()
+    if (result && new Date(result.expires_at) > new Date()) {
+      searchCache.set(projectId, { data: result.analysis, expires: new Date(result.expires_at).getTime() })
+      return res.json({ analysis: result.analysis, cached: true })
     }
   } catch {}
 
