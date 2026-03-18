@@ -10,13 +10,13 @@
     "start": "tsx server.ts"
   },
   "dependencies": {
-    "@aixbt-agent/runtime": "github:aixbt/agent",
+    "@aixbt-agent/runtime": "git+https://github.com/aixbt-agent/runtime.git#main",
     "express": "^5.1.0",
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tsx": "^4.21.0",
-    "@aixbt-agent/components": "github:aixbt-agent/components"
+    "@aixbt-agent/components": "git+https://github.com/aixbt-agent/components.git#main"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
