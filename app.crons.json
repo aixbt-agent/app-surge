@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "id": "refresh-surge-list",
+      "schedule": "0 * * * *",
+      "queue": "jobs",
+      "command": "forge run refresh-surge-list"
+    },
+    {
+      "id": "deep-search",
+      "schedule": "5 * * * *",
+      "queue": "invoke",
+      "prompt": "Update cached deep-search analysis for surge.\n\nThe refresh-surge-list job already updated surge_list.\n\nTasks:\n1. Read the 10 most recent surge_list rows.\n2. Skip projects that already have a non-expired deep_search row.\n3. For stale or missing projects, use web search to gather current catalysts, ecosystem context, and risks.\n4. Upsert deep_search with project_id, project_name, analysis, one_liner, searched_at, and expires_at = now + 12 hours.\n\nRules:\n- Keep analysis concise and trader-focused.\n- No price targets or price predictions.\n- one_liner must be short and actionable.\n- Skip projects when there is not enough fresh information rather than inventing content."
+    }
+  ]
+}
