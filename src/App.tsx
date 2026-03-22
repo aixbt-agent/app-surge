@@ -122,8 +122,13 @@ function DetailPanel({ project, onClose, deepSearch }: { project: Project | null
           </div>
         )}
         <Label text="Deep Search Analysis" />
-        {analysis && !isExpired ? (
-          <div style={{ fontSize: 'var(--fs-sm)', color: C.text, lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{analysis}</div>
+        {analysis ? (
+          <>
+            {isExpired && (
+              <div style={{ fontSize: 'var(--fs-xs)', color: C.yellow, marginBottom: 8 }}>stale — refresh pending</div>
+            )}
+            <div style={{ fontSize: 'var(--fs-sm)', color: C.text, lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{analysis}</div>
+          </>
         ) : (
           <div style={{ fontSize: 'var(--fs-sm)', color: C.muted }}>Deep search pending. Analysis will be available shortly.</div>
         )}
@@ -148,7 +153,7 @@ export default function App() {
       .catch(() => {})
   }, [])
 
-  const getSearch = (id: string) => searches.find(s => s.project_id === id) || null
+  const getSearch = (id: string) => searches.find(s => s.project_id === id.toLowerCase()) || null
   const getOneLiner = (id: string) => getSearch(id)?.one_liner || ''
 
   return (

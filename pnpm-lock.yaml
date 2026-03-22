@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@aixbt-agent/components':
         specifier: github:aixbt-agent/components#main
-        version: https://codeload.github.com/aixbt-agent/components/tar.gz/82bd9e96772367afa8268da354926fabc75cee3d(prop-types@15.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        version: https://codeload.github.com/aixbt-agent/components/tar.gz/3b8db67b286febee3bca6d45776c3f3087fc8faf(prop-types@15.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@aixbt-agent/runtime':
         specifier: github:aixbt-agent/runtime#main
         version: https://codeload.github.com/aixbt-agent/runtime/tar.gz/e0ef9ca2ea1930048bd8eeb2014590e1d10c5612(express@5.2.1)
@@ -48,8 +48,8 @@ importers:
 
 packages:
 
-  '@aixbt-agent/components@https://codeload.github.com/aixbt-agent/components/tar.gz/82bd9e96772367afa8268da354926fabc75cee3d':
-    resolution: {tarball: https://codeload.github.com/aixbt-agent/components/tar.gz/82bd9e96772367afa8268da354926fabc75cee3d}
+  '@aixbt-agent/components@https://codeload.github.com/aixbt-agent/components/tar.gz/3b8db67b286febee3bca6d45776c3f3087fc8faf':
+    resolution: {tarball: https://codeload.github.com/aixbt-agent/components/tar.gz/3b8db67b286febee3bca6d45776c3f3087fc8faf}
     version: 0.1.0
     peerDependencies:
       react: ^19.0.0
@@ -988,7 +988,7 @@ packages:
 
 snapshots:
 
-  '@aixbt-agent/components@https://codeload.github.com/aixbt-agent/components/tar.gz/82bd9e96772367afa8268da354926fabc75cee3d(prop-types@15.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@aixbt-agent/components@https://codeload.github.com/aixbt-agent/components/tar.gz/3b8db67b286febee3bca6d45776c3f3087fc8faf(prop-types@15.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
