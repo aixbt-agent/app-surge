@@ -1,7 +1,7 @@
 {
-  "name": "surge",
-  "displayName": "Surge Scanner",
-  "description": "Top surging projects with web-based deep search analysis",
+  "name": "crypto-lite",
+  "displayName": "Crypto Lite",
+  "description": "Top surging crypto projects with web-based deep search analysis",
   "aixbt": {
     "type": "ssr",
     "port": 3105,
@@ -34,10 +34,10 @@
   "packageManager": "pnpm@10.19.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aixbt-agent/app-surge.git"
+    "url": "git+https://github.com/aixbt-agent/app-crypto-lite.git"
   },
   "bugs": {
-    "url": "https://github.com/aixbt-agent/app-surge/issues"
+    "url": "https://github.com/aixbt-agent/app-crypto-lite/issues"
   },
-  "homepage": "https://github.com/aixbt-agent/app-surge#readme"
+  "homepage": "https://github.com/aixbt-agent/app-crypto-lite#readme"
 }

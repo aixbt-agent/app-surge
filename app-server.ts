@@ -1,4 +1,4 @@
-// Surge scanner SSR: serves live surging projects with deep search from db cache
+// Crypto Lite SSR: serves live surging projects with deep search from db cache
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -74,4 +74,4 @@ app.get('/api/search/:projectId', async (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'dist')))
 app.get('/{*path}', (_req, res) => res.sendFile(path.join(__dirname, 'dist', 'index.html')))
-app.listen(port, () => console.log(`surge scanner v2 listening on ${port}`))
+app.listen(port, () => console.log(`crypto lite v2 listening on ${port}`))

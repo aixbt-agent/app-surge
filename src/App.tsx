@@ -160,7 +160,7 @@ export default function App() {
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <nav style={{ background: '#000', borderBottom: '1px solid var(--c-dim)', display: 'flex', alignItems: 'center', height: 48, padding: '0 16px', flexShrink: 0, gap: 10 }}>
         <TrendingUp size={18} color={C.text} />
-        <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--fs-lg)', fontWeight: 600, color: C.text }}>surge scanner</span>
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--fs-lg)', fontWeight: 600, color: C.text }}>crypto lite</span>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: C.muted, marginLeft: 'auto' }}>top surging projects</span>
       </nav>
       <div style={{ flex: 1, overflowY: 'auto' }}>
