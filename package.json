@@ -4,7 +4,7 @@
   "description": "Top surging crypto projects with web-based deep search analysis",
   "aixbt": {
     "type": "ssr",
-    "serviceSlug": "app-surge",
+    "serviceSlug": "app-crypto-lite",
     "port": 3105,
     "startCommand": "npx tsx app-server.ts"
   },
