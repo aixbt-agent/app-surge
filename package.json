@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "tsx server.ts"
+    "start": "tsx app-server.ts"
   },
   "dependencies": {
     "@aixbt-agent/components": "github:aixbt-agent/components#main",

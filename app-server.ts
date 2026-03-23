@@ -4,23 +4,6 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { createAppData } from '@aixbt-agent/runtime'
 
-const BASE = 'https://api.aixbt.tech/v2'
-const API_KEY = process.env.AIXBT_API_KEY || ''
-
-async function aixbtFetch(apiPath: string, opts?: RequestInit): Promise<any> {
-  const res = await fetch(`${BASE}${apiPath}`, {
-    ...opts,
-    headers: { 'x-api-key': API_KEY, 'Content-Type': 'application/json', ...(opts?.headers || {}) },
-  })
-  if (!res.ok) throw new Error(`AIXBT ${apiPath} -> ${res.status}`)
-  return res.json()
-}
-
-async function fetchSurging(limit = 10) {
-  const data = await aixbtFetch(`/projects?limit=${limit}&sortBy=momentumScore&excludeStables=true`)
-  return data.data || []
-}
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
 const port = parseInt(process.env.PORT || '3105')
@@ -32,20 +15,46 @@ interface CacheEntry<T> { data: T; expires: number }
 let surgeCache: CacheEntry<any[]> | null = null
 const searchCache = new Map<string, CacheEntry<string>>()
 const SURGE_TTL = 10 * 60 * 1000
-const SEARCH_TTL = 12 * 60 * 60 * 1000
 
+function parsePgArray(value: any): string[] {
+  if (Array.isArray(value)) return value.map(String)
+  if (typeof value !== 'string' || value === '{}') return []
+  const inner = value.slice(1, -1)
+  const items: string[] = []
+  let current = ''
+  let inQuote = false
+  for (let i = 0; i < inner.length; i++) {
+    const c = inner[i]
+    if (c === '"') { inQuote = !inQuote; continue }
+    if (c === '\\' && inQuote) { i++; current += inner[i] ?? ''; continue }
+    if (c === ',' && !inQuote) { if (current) items.push(current); current = ''; continue }
+    current += c
+  }
+  if (current) items.push(current)
+  return items
+}
+
+// surge_list is populated hourly by refresh-surge-list (with hasToken=true filter)
 app.get('/api/surge', async (_req, res) => {
   if (surgeCache && surgeCache.expires > Date.now()) {
     return res.json({ projects: surgeCache.data, cached: true })
   }
   try {
-    const projects = await fetchSurging(10)
-    const result = projects.map((p: any) => ({
-      id: p.id, name: p.name, description: p.description, xHandle: p.xHandle,
-      symbol: p.coingeckoData?.symbol || '', categories: p.coingeckoData?.categories || [],
-      price: p.metrics?.usd || 0, marketCap: p.metrics?.usdMarketCap || 0,
-      volume24h: p.metrics?.usd24hVol || 0, change24h: p.metrics?.usd24hChange || 0,
-      chains: (p.tokens || []).map((t: any) => t.chain),
+    const rows = await data.table<any>('surge_list')
+      .where({ order_by: 'last_seen_at', order: 'desc' })
+      .list({ limit: 10 })
+    const result = rows.map((r: any) => ({
+      id: r.id,
+      name: r.name,
+      description: r.description ?? '',
+      xHandle: r.x_handle ?? '',
+      symbol: r.symbol ?? '',
+      categories: parsePgArray(r.categories),
+      price: parseFloat(r.price_usd) || 0,
+      marketCap: parseFloat(r.market_cap) || 0,
+      volume24h: parseFloat(r.volume_24h) || 0,
+      change24h: parseFloat(r.change_24h) || 0,
+      chains: parsePgArray(r.chains),
     }))
     surgeCache = { data: result, expires: Date.now() + SURGE_TTL }
     res.json({ projects: result, cached: false })
