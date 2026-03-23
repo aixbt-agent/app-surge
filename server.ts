@@ -17,7 +17,7 @@ async function aixbtFetch(apiPath: string, opts?: RequestInit): Promise<any> {
 }
 
 async function fetchSurging(limit = 10) {
-  const data = await aixbtFetch(`/projects?limit=${limit}&sortBy=momentumScore&excludeStables=true`)
+  const data = await aixbtFetch(`/projects?limit=${limit}&sortBy=momentumScore&excludeStables=true&hasToken=true`)
   return data.data || []
 }
 
